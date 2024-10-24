@@ -1,20 +1,19 @@
-import { applyMiddleware, compose, createStore } from "redux";
-import rootReducer from "./reducers";
-import { persistStore } from "redux-persist";
-import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from 'redux';
+import { persistStore } from 'redux-persist';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers'; // Assicurati che rootReducer sia corretto
 
-// Definisci il middleware
+// Verifica se il codice è eseguito lato client prima di applicare il middleware
+const isClient = typeof window !== 'undefined';
+
+// Usa l'applicazione del middleware solo lato client
 const middleware = [thunk];
 
-// Usa Redux DevTools se disponibile, altrimenti usa compose di Redux
-const composeEnhancers =
-    (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-
-// Applica il middleware con spread operator per espandere l'array
-const enhancer = composeEnhancers(applyMiddleware(...middleware));
+// Applica il middleware solo se siamo lato client
+const enhancer = isClient ? applyMiddleware(...middleware) : undefined;
 
 // Crea lo store con il reducer root e l'enhancer
 export const store = createStore(rootReducer, enhancer);
 
-// Crea il persistor
-export const persistor = persistStore(store);
+// Crea il persistor solo lato client
+export const persistor = isClient ? persistStore(store) : null;

@@ -1,4 +1,4 @@
-import NavigationBar from "@/components/navigationBar";
+import NavigationBar from "@/components/navigationBar/navigationLeftBar";
 
 export default function Layout({ children, title }) {
     return <div>

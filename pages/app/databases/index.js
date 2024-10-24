@@ -1,7 +1,7 @@
 import LayoutTopBar from "@/components/layout/layoutTopBar";
 
-export default function Dashboard() {
-    return <LayoutTopBar title="Dashboard">
+export default function Databases() {
+    return <LayoutTopBar title="Databases">
 
     </LayoutTopBar>
 }
