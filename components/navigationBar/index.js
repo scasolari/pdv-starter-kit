@@ -29,9 +29,9 @@ function NavigationBar(props) {
         <div className="fixed top-0 left-0 bottom-0 bg-neutral-50">
             <div className="flex justify-center items-center h-16">
                 <DropdownMenu>
-                    <DropdownMenuTrigger>
+                    <DropdownMenuTrigger className="focus-visible:ring-0 focus-visible:!outline-0">
                         <Avatar className="h-[36px] w-[36px] border">
-                            <AvatarImage src={profile?.user?.image} className="ring-0 outline-0"/>
+                            <AvatarImage src={profile?.user?.image} className="ring-0 outline-0 bg-white"/>
                             <AvatarFallback>{profile?.user?.name?.slice(0, 1)}</AvatarFallback>
                         </Avatar>
                     </DropdownMenuTrigger>
