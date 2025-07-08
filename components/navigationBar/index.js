@@ -7,11 +7,13 @@ import { useSession } from "next-auth/react";
 import { setProfile } from "@/redux/actions/main";
 import { connect } from "react-redux";
 import { useEffect } from "react";
+import useLogout from "@/lib/logout";
 
 function NavigationBar(props) {
     const { profile, setProfile } = props;
     const { data: session } = useSession();
     const router = useRouter();
+    const logout = useLogout();
 
     const linkActive = (path) => {
         return router.pathname === path;
@@ -29,7 +31,7 @@ function NavigationBar(props) {
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <Avatar className="h-[36px] w-[36px] border">
-                            <AvatarImage src={profile?.user?.image} />
+                            <AvatarImage src={profile?.user?.image} className="ring-0 outline-0"/>
                             <AvatarFallback>{profile?.user?.name?.slice(0, 1)}</AvatarFallback>
                         </Avatar>
                     </DropdownMenuTrigger>
@@ -39,10 +41,7 @@ function NavigationBar(props) {
                             <p className="text-neutral-500 font-semibold text-sm">{profile?.user?.email}</p>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem className="font-semibold">Profile</DropdownMenuItem>
-                        <DropdownMenuItem className="font-semibold">Billing</DropdownMenuItem>
-                        <DropdownMenuItem className="font-semibold">Team</DropdownMenuItem>
-                        <DropdownMenuItem className="font-semibold">Subscription</DropdownMenuItem>
+                        <DropdownMenuItem onClick={logout} className="font-semibold hover:cursor-pointer">Logout</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
