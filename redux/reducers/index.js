@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import session from "redux-persist/lib/storage/session";
-import profile from "@/redux/reducers/token";
+import profile from "@/redux/reducers/profile";
 
 // WHITELIST
 const persistConfig = {

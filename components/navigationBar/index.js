@@ -18,35 +18,31 @@ function NavigationBar(props) {
     };
 
     useEffect(() => {
-        // Se non abbiamo il profilo nel redux store, lo settiamo
-        if (session && !profile.user) {
-            setProfile(session);
-        }
-    }, [session, profile.user]);
+        setProfile(session);
+    }, [session]);
 
-    // Mostra nulla se la sessione non è ancora stata caricata
-    if (!session) return null;
+    if(!session) return null;
 
     return (
-        <div className="fixed top-0 left-0 bottom-0 border-r">
+        <div className="fixed top-0 left-0 bottom-0 bg-neutral-50">
             <div className="flex justify-center items-center h-16">
                 <DropdownMenu>
                     <DropdownMenuTrigger>
-                        <Avatar className="h-[36px] w-[36px]">
-                            <AvatarImage src={profile.profile?.user?.image} />
-                            <AvatarFallback>{profile.profile?.user?.name?.slice(0, 1)}</AvatarFallback>
+                        <Avatar className="h-[36px] w-[36px] border">
+                            <AvatarImage src={profile?.user?.image} />
+                            <AvatarFallback>{profile?.user?.name?.slice(0, 1)}</AvatarFallback>
                         </Avatar>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent side="right" align="start">
+                    <DropdownMenuContent side="right" align="start" className="shadow-md w-[260px]">
                         <DropdownMenuLabel>
-                            <p>{profile.profile?.user?.name}</p>
-                            <p className="text-muted-foreground text-sm">{profile.profile?.user?.email}</p>
+                            <p>{profile?.user?.name}</p>
+                            <p className="text-neutral-500 font-semibold text-sm">{profile?.user?.email}</p>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Profile</DropdownMenuItem>
-                        <DropdownMenuItem>Billing</DropdownMenuItem>
-                        <DropdownMenuItem>Team</DropdownMenuItem>
-                        <DropdownMenuItem>Subscription</DropdownMenuItem>
+                        <DropdownMenuItem className="font-semibold">Profile</DropdownMenuItem>
+                        <DropdownMenuItem className="font-semibold">Billing</DropdownMenuItem>
+                        <DropdownMenuItem className="font-semibold">Team</DropdownMenuItem>
+                        <DropdownMenuItem className="font-semibold">Subscription</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
@@ -54,7 +50,7 @@ function NavigationBar(props) {
                 <li>
                     <Link
                         href="/app/dashboard"
-                        className={`flex items-center p-1.5 hover:bg-neutral-100 rounded-md ${linkActive("/app/dashboard") ? `!bg-blue-100` : null}`}
+                        className={`flex items-center p-1.5 hover:bg-neutral-200 rounded-md ${linkActive("/app/dashboard") ? `!bg-blue-100` : null}`}
                     >
                         <BiCollection size={24} />
                     </Link>
@@ -62,7 +58,7 @@ function NavigationBar(props) {
                 <li>
                     <Link
                         href="/app/settings"
-                        className={`flex items-center p-1.5 hover:bg-neutral-100 rounded-md ${linkActive("/app/settings") ? `!bg-blue-100` : null}`}
+                        className={`flex items-center p-1.5 hover:bg-neutral-200 rounded-md ${linkActive("/app/settings") ? `!bg-blue-100` : null}`}
                     >
                         <BiCog size={24} />
                     </Link>

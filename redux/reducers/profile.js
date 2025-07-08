@@ -1,15 +1,15 @@
-const initialState = {
-    profile: '',
-};
+const initialState = {};
 
 const profile = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_PROFILE':
             return {
                 ...state,
-                profile: action.payload, // Ensure this is a string
+                ...action.payload
             };
         // other cases
+        case 'PROFILE_LOGOUT':
+            return initialState;
         default:
             return state;
     }
